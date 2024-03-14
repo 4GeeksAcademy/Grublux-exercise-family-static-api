@@ -59,6 +59,18 @@ def handle_delete(id):
     }
     return jsonify(response_body), 200
 
+@app.route('/members/<int:id>', methods=['PUT'])
+def handle_put(id):
+    request_body = request.json
+    updated_member = jackson_family.update_member(id, request_body)          
+    response_body = {
+        "status": "member updated",
+        "updated member": updated_member, 
+        "current family": jackson_family.get_all_members()
+     
+    }
+    return jsonify(response_body), 200
+
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))

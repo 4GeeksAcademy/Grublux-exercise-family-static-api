@@ -36,6 +36,17 @@ class FamilyStructure:
             if self._members[index]["id"]==id:
                 del_member = self._members.pop(index)
                 return del_member
+            
+    def update_member(self, id, member):
+        saved_id = id
+        del_member = None
+        for index in range(0,len(self._members)):
+            if self._members[index]["id"]==id:
+                del_member = self._members.pop(index)
+        member["id"]=saved_id
+        self._members.append(member)
+        return del_member
+    
 
     def get_member(self, id):
         # fill this method and update the return
